@@ -3,14 +3,17 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.hpp"
+#include "Auto.hpp"
 
 #include "wpi/smartdashboard/SmartDashboard.hpp"
 #include "wpi/util/print.hpp"
 
 Robot::Robot() {
-  chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
-  chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
-  wpi::SmartDashboard::PutData("Auto Modes", &chooser);
+  std::map<std::string, std::reference_wrapper<Auto>>& autos = Auto::getAutos();
+  for (const auto& [name, class] : autos)
+    chooser.AddOption(name, name);
+  chooser.SetDefaultOption(defaultAuto, defaultAuto);
+  wpi::SmartDashboard::PutData("Autos", &chooser);
 }
 
 /**

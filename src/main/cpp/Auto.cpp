@@ -7,8 +7,12 @@ Auto::Auto() {
     if (auto_list == nullptr)
         auto_list = new std::map<std::string, std::reference_wrapper<Auto>>();
     // Add auto
-    auto_list->[this->name] = *this;
+    std::map<std::string, std::reference_wrapper<Auto>>& autos = *auto_list;
+    autos[this->name] = *this;
 }
 std::map<std::string, std::reference_wrapper<Auto>> getAutos() {
-
+    // Return empty map if there are no registered autos
+    if (auto_list == nullptr)
+        return {};
+    return *auto_list;
 }

@@ -4,8 +4,11 @@
 #include <functional>
 
 class Auto {
-    static std::map<std::string, std::reference_wrapper<Auto>> getAutos(); // Get auto list
 public:
+    // Static members
+    static const std::string defaultAuto = "Default";
+    static std::map<std::string, std::reference_wrapper<Auto>> getAutos(); // Get auto list
+    
     // Base constructor which adds autos to the auto list
     Auto();
     // Auto display name

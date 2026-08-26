@@ -10,7 +10,7 @@
 #include "wpi/smartdashboard/SendableChooser.hpp"
 
 class Robot : public wpi::TimedRobot {
- public:
+public:
   Robot();
   void RobotPeriodic() override;
   void AutonomousInit() override;
@@ -24,9 +24,7 @@ class Robot : public wpi::TimedRobot {
   void SimulationInit() override;
   void SimulationPeriodic() override;
 
- private:
+private:
   wpi::SendableChooser<std::string> chooser;
-  const std::string kAutoNameDefault = "Default";
-  const std::string kAutoNameCustom = "My Auto";
   std::string autoSelected;
 };
