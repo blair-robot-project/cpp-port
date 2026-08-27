@@ -65,7 +65,11 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {}
 
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  
+  // Run subsys
+  Subsystem::periodicSubsystems();
+}
 
 void Robot::DisabledInit() {}
 

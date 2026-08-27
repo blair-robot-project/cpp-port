@@ -1,7 +1,7 @@
 #include "Auto.hpp"
 
 // Create auto
-class Example : public Auto {
+class ExampleAuto : public Auto {
     const std::string name = "Example Auto";
     void init() {
         // Init code goes here
@@ -11,4 +11,4 @@ class Example : public Auto {
     }
 };
 // Register auto
-Example registered;
+ExampleAuto exampleauto;

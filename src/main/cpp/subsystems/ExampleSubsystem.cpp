@@ -1,6 +1,6 @@
 #include "Subsystem.hpp"
 
-class Example : public Subsystem {
+class ExampleSubsystem : public Subsystem {
     const int priority = 0;
     void init() {
 
@@ -9,4 +9,5 @@ class Example : public Subsystem {
     
     }
 };
-Example registered;
+// Register subsystem
+ExampleSubsystem examplesubsystem;
