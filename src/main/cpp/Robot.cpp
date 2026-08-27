@@ -37,18 +37,19 @@ void Robot::RobotPeriodic() {}
  * make sure to add them to the chooser code above as well.
  */
 void Robot::AutonomousInit() {
+  std::map<std::string, Auto*>& autos = Auto::getAutos();
   std::string autoName = autoChooser.GetSelected();
-  if (!Auto::getAutos().contains(autoName)) {
+  if (!autos.contains(autoName)) {
     wpi::util::print("Auto does not exist: {}", autoName);
     return;
   }
-  autoSelected = Auto::getAutos()[autoName];
-  if (autoSelected != nullptr) {
-    wpi::util::print("Auto selected: {}\n", autoSelected->name);
-    autoSelected->init();
-  }
-  else
+  autoSelected = autos[autoName];
+  if (autoSelected == nullptr) {
     wpi::util::print("Auto is null: {}", autoName);
+    return;
+  }
+  wpi::util::print("Auto selected: {}\n", autoSelected->name);
+  autoSelected->init();
 }
 
 void Robot::AutonomousPeriodic() {
