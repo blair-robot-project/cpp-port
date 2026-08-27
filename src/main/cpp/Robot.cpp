@@ -3,17 +3,16 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.hpp"
-#include "Auto.hpp"
 
 #include "wpi/smartdashboard/SmartDashboard.hpp"
 #include "wpi/util/print.hpp"
 
 Robot::Robot() {
-  std::map<std::string, std::reference_wrapper<Auto>>& autos = Auto::getAutos();
-  for (const auto& [name, class] : autos)
-    chooser.AddOption(name, name);
-  chooser.SetDefaultOption(defaultAuto, defaultAuto);
-  wpi::SmartDashboard::PutData("Autos", &chooser);
+  std::map<std::string, Auto*>& autos = Auto::getAutos();
+  for (const auto& [name, pointer] : autos)
+    autoChooser.AddOption(name, name);
+  autoChooser.SetDefaultOption(DEFAULT_AUTO, DEFAULT_AUTO);
+  wpi::SmartDashboard::PutData("Autos", &autoChooser);
 }
 
 /**
@@ -38,23 +37,24 @@ void Robot::RobotPeriodic() {}
  * make sure to add them to the chooser code above as well.
  */
 void Robot::AutonomousInit() {
-  autoSelected = chooser.GetSelected();
-  // autoSelected = SmartDashboard::GetString("Auto Selector",
-  //     kAutoNameDefault);
-  wpi::util::print("Auto selected: {}\n", autoSelected);
-
-  if (autoSelected == kAutoNameCustom) {
-    // Custom Auto goes here
-  } else {
-    // Default Auto goes here
+  std::string autoName = autoChooser.GetSelected();
+  if (!Auto::getAutos().contains(autoName)) {
+    wpi::util::print("Auto does not exist: {}", autoName);
+    return;
   }
+  autoSelected = Auto::getAutos()[autoName];
+  if (autoSelected != nullptr) {
+    wpi::util::print("Auto selected: {}\n", autoSelected->name);
+    autoSelected->init();
+  }
+  else
+    wpi::util::print("Auto is null: {}", autoName);
 }
 
 void Robot::AutonomousPeriodic() {
-  if (autoSelected == kAutoNameCustom) {
-    // Custom Auto goes here
-  } else {
-    // Default Auto goes here
+  // Run auto periodic if one is selected
+  if (autoSelected != nullptr) {
+    autoSelected->periodic();
   }
 }
 

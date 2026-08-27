@@ -9,6 +9,8 @@
 #include "wpi/framework/TimedRobot.hpp"
 #include "wpi/smartdashboard/SendableChooser.hpp"
 
+#include "Auto.hpp"
+
 class Robot : public wpi::TimedRobot {
 public:
   Robot();
@@ -25,6 +27,6 @@ public:
   void SimulationPeriodic() override;
 
 private:
-  wpi::SendableChooser<std::string> chooser;
-  std::string autoSelected;
+  wpi::SendableChooser<std::string> autoChooser;
+  Auto* autoSelected = nullptr;
 };

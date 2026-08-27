@@ -1,18 +1,19 @@
 #include "Auto.hpp"
 
 // Auto list
-std::map<std::string, std::reference_wrapper<Auto>>* auto_list = nullptr;
+std::map<std::string, Auto*>* auto_list = nullptr;
 Auto::Auto() {
     // Create auto list if it doesn't exist yet
     if (auto_list == nullptr)
-        auto_list = new std::map<std::string, std::reference_wrapper<Auto>>();
+        auto_list = new std::map<std::string, Auto*>();
     // Add auto
-    std::map<std::string, std::reference_wrapper<Auto>>& autos = *auto_list;
-    autos[this->name] = *this;
+    (*auto_list)[this->name] = this;
 }
-std::map<std::string, std::reference_wrapper<Auto>> getAutos() {
-    // Return empty map if there are no registered autos
+std::map<std::string, Auto*>& Auto::getAutos() {
+    // Create auto list if it doesn't exist yet
     if (auto_list == nullptr)
-        return {};
+        auto_list = new std::map<std::string, Auto*>();
     return *auto_list;
 }
+void Auto::init() {}
+void Auto::periodic() {}

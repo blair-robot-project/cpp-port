@@ -3,11 +3,11 @@
 #include <map>
 #include <functional>
 
+#define DEFAULT_AUTO "Default"
 class Auto {
 public:
     // Static members
-    static const std::string defaultAuto = "Default";
-    static std::map<std::string, std::reference_wrapper<Auto>> getAutos(); // Get auto list
+    static std::map<std::string, Auto*>& getAutos(); // Get auto list
     
     // Base constructor which adds autos to the auto list
     Auto();
