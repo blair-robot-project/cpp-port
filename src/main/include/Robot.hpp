@@ -10,6 +10,8 @@
 #include "wpi/smartdashboard/SendableChooser.hpp"
 
 #include "Auto.hpp"
+#include "Subsystem.hpp"
+
 
 class Robot : public wpi::TimedRobot {
 public:

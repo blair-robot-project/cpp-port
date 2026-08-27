@@ -13,6 +13,8 @@ Robot::Robot() {
     autoChooser.AddOption(name, name);
   autoChooser.SetDefaultOption(DEFAULT_AUTO, DEFAULT_AUTO);
   wpi::SmartDashboard::PutData("Autos", &autoChooser);
+  
+  Subsystem::initSubsystems();
 }
 
 /**
@@ -57,6 +59,8 @@ void Robot::AutonomousPeriodic() {
   if (autoSelected != nullptr) {
     autoSelected->periodic();
   }
+  // Run subsys
+  Subsystem::periodicSubsystems();
 }
 
 void Robot::TeleopInit() {}

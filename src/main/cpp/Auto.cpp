@@ -7,7 +7,7 @@ Auto::Auto() {
     if (auto_list == nullptr)
         auto_list = new std::map<std::string, Auto*>();
     // Add auto
-    (*auto_list)[this->name] = this;
+    auto_list->insert({this->name, this});
 }
 std::map<std::string, Auto*>& Auto::getAutos() {
     // Create auto list if it doesn't exist yet
