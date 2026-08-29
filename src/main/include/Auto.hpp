@@ -12,7 +12,7 @@ public:
     // Base constructor which adds autos to the auto list
     Auto();
     // Auto display name
-    const std::string name = "";
+    const char* name = "";
     // Auto callbacks
     virtual void init();
     virtual void periodic();

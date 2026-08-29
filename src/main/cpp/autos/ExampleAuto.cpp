@@ -2,7 +2,7 @@
 
 // Create auto
 class ExampleAuto : public Auto {
-    const std::string name = "Example Auto";
+    const char* name = "Example Auto";
     void init() {
         // Init code goes here
     }
