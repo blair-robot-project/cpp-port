@@ -10,9 +10,8 @@ public:
     static std::map<std::string, Auto*>& getAutos(); // Get auto list
     
     // Base constructor which adds autos to the auto list
-    Auto();
-    // Auto display name
-    const char* name = "";
+    Auto(std::string auto_name);
+    std::string name;
     // Auto callbacks
     virtual void init();
     virtual void periodic();

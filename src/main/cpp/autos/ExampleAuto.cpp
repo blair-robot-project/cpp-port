@@ -2,7 +2,10 @@
 
 // Create auto
 class ExampleAuto : public Auto {
-    const char* name = "Example Auto";
+public:
+    // Set name
+    ExampleAuto() : Auto("Example Auto") {}
+    // Callbacks
     void init() {
         // Init code goes here
     }

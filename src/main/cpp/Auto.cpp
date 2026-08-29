@@ -3,13 +3,13 @@
 
 // Auto list
 std::map<std::string, Auto*>* auto_list = nullptr;
-Auto::Auto() {
+Auto::Auto(std::string name) {
     // Create auto list if it doesn't exist yet
     if (auto_list == nullptr)
         auto_list = new std::map<std::string, Auto*>();
-    // Add auto
-    auto_list->insert({this->name, this});
-    wpi::util::print("Auto {} registered!", this->name);
+    // Register auto
+    auto_list->insert({name, this});
+    wpi::util::println("Auto {} registered!", name);
 }
 std::map<std::string, Auto*>& Auto::getAutos() {
     // Create auto list if it doesn't exist yet
@@ -19,3 +19,5 @@ std::map<std::string, Auto*>& Auto::getAutos() {
 }
 void Auto::init() {}
 void Auto::periodic() {}
+
+Auto defaultAuto(DEFAULT_AUTO);
