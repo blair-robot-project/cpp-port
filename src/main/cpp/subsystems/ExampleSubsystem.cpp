@@ -1,13 +1,11 @@
-#include "Subsystem.hpp"
+#include "subsystems/ExampleSubsystem.hpp"
 
-class ExampleSubsystem : public Subsystem {
-    const int priority = 0;
-    void init() {
+// Name for diagnostics
+ExampleSubsystem::ExampleSubsystem() : Subsystem("Example Subsystem") {}
 
-    }
-    void periodic() {
-    
-    }
-};
+// Implement methods
+void ExampleSubsystem::init() {}
+void ExampleSubsystem::periodic() {}
+
 // Register subsystem
 ExampleSubsystem examplesubsystem;

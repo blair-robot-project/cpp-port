@@ -1,17 +1,19 @@
-// Base Subsystem Class
+#include <wpi/commands2/SubsystemBase.hpp>
 
-class Subsystem {
+/* A modular Subsystem class with diagnostics */
+class Subsystem : public wpi::cmd::SubsystemBase {
 public:
-    // Static Members
-    static void initSubsystems();   // Calls init() on all subsystems in their priority order
-    static void periodicSubsystems();   // Calls periodic() on all subsystems in their priority order
-
-    // Base Constructor which adds th
-    Subsystem();
-    // Subsystem priority
-    const int priority = 0;
-
-    // Subsystem callbacks
+    // Base subsystem constructor which takes in a name for diagnostics
+    Subsystem(std::string subsystem_name);
+    
+protected:
+    // All hardware should be initialized in init
     virtual void init();
+    // Periodic will run once every 20ms
     virtual void periodic();
+private:
+    // Reserved for measuring the efficiency of periodic()
+    void Periodic() override;
+    // Name for diagnostics
+    std::string name;
 };

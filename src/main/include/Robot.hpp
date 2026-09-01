@@ -6,12 +6,11 @@
 
 #include <string>
 
-#include "wpi/framework/TimedRobot.hpp"
-#include "wpi/smartdashboard/SendableChooser.hpp"
+#include <wpi/framework/TimedRobot.hpp>
+#include <wpi/smartdashboard/SendableChooser.hpp>
+#include <wpi/commands2/SubsystemBase.hpp>
 
 #include "Auto.hpp"
-#include "Subsystem.hpp"
-
 
 class Robot : public wpi::TimedRobot {
 public:

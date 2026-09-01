@@ -13,8 +13,6 @@ Robot::Robot() {
     autoChooser.AddOption(name, name);
   autoChooser.SetDefaultOption(DEFAULT_AUTO, DEFAULT_AUTO);
   wpi::SmartDashboard::PutData("Autos", &autoChooser);
-  
-  Subsystem::initSubsystems();
 }
 
 /**
@@ -25,7 +23,9 @@ Robot::Robot() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() {
+  wpi::cmd::CommandScheduler::GetInstance().Run();
+}
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
@@ -50,26 +50,18 @@ void Robot::AutonomousInit() {
     wpi::util::print("Auto is null: {}", autoName);
     return;
   }
-  wpi::util::print("Auto selected: {}\n", autoSelected->name);
+  wpi::util::print("Auto selected: {}\n", autoName);
   autoSelected->init();
 }
 
 void Robot::AutonomousPeriodic() {
-  // Run auto periodic if one is selected
-  if (autoSelected != nullptr) {
+  if (autoSelected != nullptr)
     autoSelected->periodic();
-  }
-  // Run subsys
-  Subsystem::periodicSubsystems();
 }
 
 void Robot::TeleopInit() {}
 
-void Robot::TeleopPeriodic() {
-  
-  // Run subsys
-  Subsystem::periodicSubsystems();
-}
+void Robot::TeleopPeriodic() {}
 
 void Robot::DisabledInit() {}
 

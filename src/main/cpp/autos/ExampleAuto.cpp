@@ -5,11 +5,11 @@ class ExampleAuto : public Auto {
 public:
     // Set name
     ExampleAuto() : Auto("Example Auto") {}
-    // Callbacks
-    void init() {
+    // Command
+    void init() override {
         // Init code goes here
     }
-    void periodic() {
+    void periodic() override {
         // Periodic code goes here
     }
 };

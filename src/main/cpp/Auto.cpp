@@ -9,7 +9,7 @@ Auto::Auto(std::string name) {
         auto_list = new std::map<std::string, Auto*>();
     // Register auto
     auto_list->insert({name, this});
-    wpi::util::println("Auto {} registered!", name);
+    wpi::util::println("Auto registered: {}", name);
 }
 std::map<std::string, Auto*>& Auto::getAutos() {
     // Create auto list if it doesn't exist yet
@@ -17,7 +17,10 @@ std::map<std::string, Auto*>& Auto::getAutos() {
         auto_list = new std::map<std::string, Auto*>();
     return *auto_list;
 }
-void Auto::init() {}
-void Auto::periodic() {}
 
+// Default auto
+void Auto::init() {
+}
+void Auto::periodic() {
+}
 Auto defaultAuto(DEFAULT_AUTO);
