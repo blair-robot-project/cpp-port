@@ -6,28 +6,20 @@
 
 #include <string>
 
-#include <wpi/framework/TimedRobot.hpp>
-#include <wpi/smartdashboard/SendableChooser.hpp>
-#include <wpi/commands2/SubsystemBase.hpp>
+#include <wpi/framework/OpModeRobot.hpp>
 
-#include "Auto.hpp"
-
-class Robot : public wpi::TimedRobot {
+class Robot : public wpi::OpModeRobot<Robot> {
 public:
   Robot();
   void RobotPeriodic() override;
-  void AutonomousInit() override;
-  void AutonomousPeriodic() override;
-  void TeleopInit() override;
-  void TeleopPeriodic() override;
+  void DriverStationConnected() override;
+  // No OpMode selected
+  void NonePeriodic() override;
+  // Disabled
   void DisabledInit() override;
   void DisabledPeriodic() override;
-  void UtilityInit() override;
-  void UtilityPeriodic() override;
+  void DisabledExit() override;
+  // Simulation
   void SimulationInit() override;
   void SimulationPeriodic() override;
-
-private:
-  wpi::SendableChooser<std::string> autoChooser;
-  Auto* autoSelected = nullptr;
 };

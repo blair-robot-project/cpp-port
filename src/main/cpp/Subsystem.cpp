@@ -5,8 +5,8 @@
 #include <chrono>
 
 Subsystem::Subsystem(std::string subsystem_name) {
-    name = subsystem_name;
-    wpi::util::println("Subsystem registered: {}", name);
+    SetName(subsystem_name);
+    wpi::util::println("Subsystem registered: {}", subsystem_name);
 }
 void Subsystem::init() {}
 void Subsystem::periodic() {}

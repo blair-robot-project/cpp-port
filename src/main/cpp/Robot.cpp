@@ -4,75 +4,37 @@
 
 #include "Robot.hpp"
 
-#include "wpi/smartdashboard/SmartDashboard.hpp"
-#include "wpi/util/print.hpp"
+#include <wpi/util/print.hpp>
 
+#include "RegisteredOpMode.hpp"
+#include <wpi/commands2/CommandScheduler.hpp>
+
+// Constructor
 Robot::Robot() {
-  std::map<std::string, Auto*>& autos = Auto::getAutos();
-  for (const auto& [name, pointer] : autos)
-    autoChooser.AddOption(name, name);
-  autoChooser.SetDefaultOption(DEFAULT_AUTO, DEFAULT_AUTO);
-  wpi::SmartDashboard::PutData("Autos", &autoChooser);
+  // Add and publish all OpModes
+  RegisteredOpModeBase::addOpModes(*this);
+  PublishOpModes();
+  wpi::util::println("Added OpModes");
 }
 
-/**
- * This function is called every 20 ms, no matter the mode. Use
- * this for items like diagnostics that you want ran during disabled,
- * autonomous, teleoperated and utility.
- *
- * <p> This runs after the mode specific periodic functions, but before
- * LiveWindow and SmartDashboard integrated updating.
- */
 void Robot::RobotPeriodic() {
+  // Run commands and subsystems
   wpi::cmd::CommandScheduler::GetInstance().Run();
 }
 
-/**
- * This autonomous (along with the chooser code above) shows how to select
- * between different autonomous modes using the dashboard. The sendable chooser
- * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
- * remove all of the chooser code and uncomment the GetString line to get the
- * auto name from the text box below the Gyro.
- *
- * You can add additional auto modes by adding additional comparisons to the
- * if-else structure below with additional strings. If using the SendableChooser
- * make sure to add them to the chooser code above as well.
- */
-void Robot::AutonomousInit() {
-  std::map<std::string, Auto*>& autos = Auto::getAutos();
-  std::string autoName = autoChooser.GetSelected();
-  if (!autos.contains(autoName)) {
-    wpi::util::print("Auto does not exist: {}", autoName);
-    return;
-  }
-  autoSelected = autos[autoName];
-  if (autoSelected == nullptr) {
-    wpi::util::print("Auto is null: {}", autoName);
-    return;
-  }
-  wpi::util::print("Auto selected: {}\n", autoName);
-  autoSelected->init();
-}
+// Driver Station Connected
+void Robot::DriverStationConnected() {}
 
-void Robot::AutonomousPeriodic() {
-  if (autoSelected != nullptr)
-    autoSelected->periodic();
-}
+// No OpMode enabled
+void Robot::NonePeriodic() {}
 
-void Robot::TeleopInit() {}
-
-void Robot::TeleopPeriodic() {}
-
+// Disabled
 void Robot::DisabledInit() {}
-
 void Robot::DisabledPeriodic() {}
+void Robot::DisabledExit() {}
 
-void Robot::UtilityInit() {}
-
-void Robot::UtilityPeriodic() {}
-
+// Simulation
 void Robot::SimulationInit() {}
-
 void Robot::SimulationPeriodic() {}
 
 #ifndef RUNNING_WPILIB_TESTS

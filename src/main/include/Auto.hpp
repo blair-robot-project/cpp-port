@@ -1,19 +1,13 @@
-// Base Auto Class
-#include <string>
-#include <map>
+// Register Auto OpMode
+#pragma once
 
-#include <wpi/commands2/Command.hpp>
+#include "RegisteredOpMode.hpp"
 
-#define DEFAULT_AUTO "Default"
-class Auto {
+/* The Auto class is used to register a wpi::OpMode as an auto */
+template <wpi::ConstructibleOpMode<Robot> T>  // Auto passed as a wpi::OpMode template
+class Auto : public RegisteredOpMode<T> {
 public:
-    // Static members
-    static std::map<std::string, Auto*>& getAutos(); // Get auto list
-    
-    // Base constructor which adds autos to the auto list
-    Auto(std::string auto_name);    
-
-    // Auto callbacks
-    virtual void init();
-    virtual void periodic();
+    // Constructor adds auto to list to be registered as an OpMode
+    inline Auto(std::string auto_name, std::string auto_description, std::string auto_group) :
+    RegisteredOpMode<T>::RegisteredOpMode(wpi::RobotMode::AUTONOMOUS, auto_name, auto_group, auto_description) {}
 };

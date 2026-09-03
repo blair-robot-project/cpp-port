@@ -3,9 +3,9 @@
 /* A modular Subsystem class with diagnostics */
 class Subsystem : public wpi::cmd::SubsystemBase {
 public:
-    // Base subsystem constructor which takes in a name for diagnostics
+    // Base subsystem constructor which takes in a name
     Subsystem(std::string subsystem_name);
-    
+
 protected:
     // All hardware should be initialized in init
     virtual void init();
@@ -14,6 +14,4 @@ protected:
 private:
     // Reserved for measuring the efficiency of periodic()
     void Periodic() override;
-    // Name for diagnostics
-    std::string name;
 };
