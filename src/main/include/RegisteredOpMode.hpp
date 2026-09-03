@@ -41,6 +41,7 @@ private:
     // Add OpMode to robot
     inline void addOpMode(Robot& robot) {
         robot.AddOpMode<T>(mode, name, group, description);
+        wpi::util::println("Added OpMode: {}", name);
     }
     // OpMode parameters
     wpi::RobotMode mode;

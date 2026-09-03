@@ -13,6 +13,6 @@ RegisteredOpModeBase::RegisteredOpModeBase() {
 }
 // Add all OpModes in list
 void RegisteredOpModeBase::addOpModes(Robot& robot) {
-    for (RegisteredOpModeBase* opmode : *opmode_list)
+    if (opmode_list != nullptr) for (RegisteredOpModeBase* opmode : *opmode_list)
         opmode->addOpMode(robot);
 }
