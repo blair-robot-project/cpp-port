@@ -6,15 +6,20 @@
 
 #include <wpi/util/print.hpp>
 
-#include "RegisteredOpMode.hpp"
 #include <wpi/commands2/CommandScheduler.hpp>
+
+#include "RegisteredOpMode.hpp"
+#include "Subsystem.hpp"
 
 // Constructor
 Robot::Robot() {
+  // Initialize Subsystems
+  Subsystem::initSubsystems();
+  wpi::util::println("Initialized All Subsystems");
   // Add and publish all OpModes
   RegisteredOpModeBase::addOpModes(*this);
   PublishOpModes();
-  wpi::util::println("Added OpModes");
+  wpi::util::println("Added All OpModes");
 }
 
 void Robot::RobotPeriodic() {
