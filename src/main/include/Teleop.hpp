@@ -8,6 +8,6 @@ template <wpi::ConstructibleOpMode<Robot> T>  // Auto passed as a wpi::OpMode te
 class Teleop : public RegisteredOpMode<T> {
 public:
     // Constructor adds the teleop to the list to be registered as an OpMode
-    inline Teleop(std::string teleop_name, std::string teleop_description = "", std::string teleop_group = "") :
+    inline Teleop(std::string teleop_name, std::string teleop_group = "", std::string teleop_description = "") :
     RegisteredOpMode<T>::RegisteredOpMode(wpi::RobotMode::TELEOPERATED, teleop_name, teleop_group, teleop_description) {}
 };

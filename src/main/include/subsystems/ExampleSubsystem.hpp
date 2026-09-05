@@ -1,3 +1,4 @@
+#pragma once
 #include "Subsystem.hpp"
 
 class ExampleSubsystem : public Subsystem {
@@ -8,5 +9,3 @@ private:
     void init() override;
     void periodic() override;
 };
-// Globally accessible to be used in commands
-extern ExampleSubsystem examplesubsystem;

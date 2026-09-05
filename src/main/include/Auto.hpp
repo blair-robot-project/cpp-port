@@ -8,6 +8,6 @@ template <wpi::ConstructibleOpMode<Robot> T>  // Auto passed as a wpi::OpMode te
 class Auto : public RegisteredOpMode<T> {
 public:
     // Constructor adds auto to list to be registered as an OpMode
-    inline Auto(std::string auto_name, std::string auto_description, std::string auto_group) :
+    inline Auto(std::string auto_name, std::string auto_group = "", std::string auto_description = "") :
     RegisteredOpMode<T>::RegisteredOpMode(wpi::RobotMode::AUTONOMOUS, auto_name, auto_group, auto_description) {}
 };

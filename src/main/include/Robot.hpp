@@ -8,9 +8,17 @@
 
 #include <wpi/framework/OpModeRobot.hpp>
 
+#include "subsystems/ExampleSubsystem.hpp"
+
 class Robot : public wpi::OpModeRobot<Robot> {
 public:
+  // Subsystems
+  ExampleSubsystem examplesubsystem;
+
+  // Constructor
   Robot();
+  
+  // Callbacks
   void RobotPeriodic() override;
   void DriverStationConnected() override;
   // No OpMode selected

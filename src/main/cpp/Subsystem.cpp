@@ -9,6 +9,7 @@
 #include <wpi/nt/NetworkTable.hpp>
 #include <wpi/nt/NetworkTableInstance.hpp>
 
+// Add subsystem to list
 std::vector<Subsystem*>* subsystem_list = nullptr;
 Subsystem::Subsystem(std::string subsystem_name) {
     SetName(subsystem_name);
@@ -19,6 +20,9 @@ Subsystem::Subsystem(std::string subsystem_name) {
     subsystem_list->push_back(this);
     wpi::util::println("Registered Subsystem: {}", subsystem_name);
 }
+// Default destructor
+Subsystem::~Subsystem() {}
+// Initialize all subsystems
 void Subsystem::initSubsystems() {
     // Initialize diagnostics
     wpi::nt::NetworkTableInstance nt = wpi::nt::NetworkTableInstance::GetDefault();

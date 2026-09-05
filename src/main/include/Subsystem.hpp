@@ -1,3 +1,6 @@
+// Auto registering diagnostic subsystem class
+#pragma once
+
 #include <wpi/commands2/SubsystemBase.hpp>
 #include <wpi/nt/DoubleTopic.hpp>
 
@@ -6,6 +9,8 @@ class Subsystem : public wpi::cmd::SubsystemBase {
 public:
     // Base subsystem constructor which takes in a name
     Subsystem(std::string subsystem_name);
+    // Default destructor
+    virtual ~Subsystem() noexcept;
     // Initialize all subsystems
     static void initSubsystems();
 protected:
