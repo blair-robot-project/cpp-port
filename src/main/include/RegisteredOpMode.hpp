@@ -28,10 +28,8 @@ template <wpi::ConstructibleOpMode<Robot> T>    // wpi::OpMode passed as a templ
 class RegisteredOpMode : public RegisteredOpModeBase {
 public:
     // Constructor to get OpMode parameters
-    inline RegisteredOpMode(wpi::RobotMode opmode_mode, std::string opmode_name, std::string opmode_group, std::string opmode_description) {
-        mode = opmode_mode;
-        name = opmode_name;
-        group = opmode_group;
+    inline RegisteredOpMode(wpi::RobotMode opmode_mode, std::string opmode_name, std::string opmode_group, std::string opmode_description) :
+        mode{opmode_mode}, name{opmode_name}, group{opmode_group}, description{opmode_description} {
         description = opmode_description;
         wpi::util::println("Registered OpMode: {}", name);
     }

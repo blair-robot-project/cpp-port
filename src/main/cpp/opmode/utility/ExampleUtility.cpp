@@ -11,12 +11,15 @@ public:
     // Callbacks
     void Start() override {
         // Init code goes here
+        wpi::util::print("Example utility start!");
     }
     void Periodic() override {
         // Periodic code goes here
+        wpi::util::print("Example utility!");
     }
     void End() override {
         // End code goes here
+        wpi::util::print("Example utility end!");
     }
 };
 // Register utility

@@ -12,7 +12,10 @@
 #include "Subsystem.hpp"
 
 // Constructor
+Robot* robot = nullptr;
 Robot::Robot() {
+  // Make robot globally accessible
+  robot = this;
   // Initialize Subsystems
   Subsystem::initSubsystems();
   wpi::util::println("Initialized All Subsystems");

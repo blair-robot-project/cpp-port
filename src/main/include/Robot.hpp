@@ -31,3 +31,6 @@ public:
   void SimulationInit() override;
   void SimulationPeriodic() override;
 };
+
+// Globally accessible reference to the robot
+extern Robot* robot;

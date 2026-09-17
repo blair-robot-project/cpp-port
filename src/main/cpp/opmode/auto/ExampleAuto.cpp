@@ -11,12 +11,15 @@ public:
     // Callbacks
     void Start() override {
         // Init code goes here
+        wpi::util::println("Example auto start!");
     }
     void Periodic() override {
         // Periodic code goes here
+        wpi::util::println("Example auto!");
     }
     void End() override {
         // End code goes here
+        wpi::util::println("Example auto end!");
     }
 };
 // Register auto

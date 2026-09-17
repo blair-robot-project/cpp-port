@@ -15,7 +15,7 @@ Subsystem::Subsystem(std::string subsystem_name) {
     SetName(subsystem_name);
     // Create subsystem list if it doesn't exist yet
     if (subsystem_list == nullptr)
-        subsystem_list = new std::vector<Subsystem*>;
+        subsystem_list = new std::vector<Subsystem*>();
     // Register subsystem
     subsystem_list->push_back(this);
     wpi::util::println("Registered Subsystem: {}", subsystem_name);
@@ -26,7 +26,7 @@ Subsystem::~Subsystem() {}
 void Subsystem::initSubsystems() {
     // Initialize diagnostics
     wpi::nt::NetworkTableInstance nt = wpi::nt::NetworkTableInstance::GetDefault();
-    std::shared_ptr<wpi::nt::NetworkTable> table = nt.GetTable("Subsystem Periodic Execution Time (ms)");
+    std::shared_ptr<wpi::nt::NetworkTable> table = nt.GetTable("Subsystem Periodic Execution Time (μs)");
     // Initialize subsystems if the subsystem list exists
     if (subsystem_list != nullptr) for (Subsystem* subsystem : *subsystem_list) {
         subsystem->init();
@@ -45,6 +45,6 @@ void Subsystem::Periodic() {
     periodic();
     // Calculate nanoseconds
     const std::chrono::time_point end = std::chrono::steady_clock::now();
-    const std::chrono::duration<double, std::milli> time = end - start;
+    const std::chrono::duration<double, std::micro> time = end - start;
     execution_time.Set(time.count());
 }
