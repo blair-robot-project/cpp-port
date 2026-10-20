@@ -13,6 +13,7 @@ public:
     virtual ~Subsystem() noexcept;
     // Initialize all subsystems
     static void initSubsystems();
+
 protected:
     // All hardware should be initialized in init
     virtual void init();
